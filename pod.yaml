@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: firstpod
+spec:
+  containers:
+    - name: myimage
+      image: gcr.io/vyshnavi1-374012/firstimage:1

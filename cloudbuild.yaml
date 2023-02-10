@@ -1,0 +1,15 @@
+steps:
+  # build the container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "gcr.io/vyshnavi1-374012/firstimage:1", "."]
+  # push container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "gcr.io/vyshnavi1-374012/firstimage:1"]
+  # deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=pod.yaml
+  - --image=gcr.io/vyshnavi1-374012/firstimage:1
+  - --location=us-central1-c
+  - --cluster=vikas-k8s
