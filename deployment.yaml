@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my deployment
+  labels:
+    app: new1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: new1
+  template:
+    metadata:
+      labels:
+        app: new1
+    spec:
+      container:
+        - name: sample deployment
+          image: gcr.io/vyshnavi1-374012/firstimage:1
+          port:
+            - containerPort: 8080
+              targetPort: 8090
+  
