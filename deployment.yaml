@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my deployment
+  name: mydeployment
   labels:
     app: new1
 spec:
@@ -16,10 +16,26 @@ spec:
         app: new1
     spec:
       containers:
-        - name: sample deployment
+        - name: sample-deployment
           image: gcr.io/vyshnavi1-374012/firstimage:1
-          port:
+          ports:
             - containerPort: 8080
               protocol: TCP
+...
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-for-deployment
+  labels:
+    app: new1
+spec:
+  type: LoadBalancer
+  selector:
+    app: new1
+  ports:
+    - port: 8050
+      targetPort: 8080
 ...
   
