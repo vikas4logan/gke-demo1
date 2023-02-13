@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,10 +15,11 @@ spec:
       labels:
         app: new1
     spec:
-      container:
+      containers:
         - name: sample deployment
           image: gcr.io/vyshnavi1-374012/firstimage:1
           port:
             - containerPort: 8080
-              targetPort: 8090
+              protocol: TCP
+...
   
