@@ -1,15 +1,15 @@
 steps:
   # build the container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["build", "-t", "gcr.io/bestrealtimeprojects/sasuke:v1", "."]
+  args: ["build", "-t", "gcr.io/bestrealtimeprojects/sasuke:v4", "."]
   # push container image
 - name: "gcr.io/cloud-builders/docker"
-  args: ["push", "gcr.io/bestrealtimeprojects/sasuke:v1"]
+  args: ["push", "gcr.io/bestrealtimeprojects/sasuke:v4"]
   # deploy container image to GKE
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=deployment.yaml
-  - --image=gcr.io/bestrealtimeprojects/sasuke:v1
+  - --filename=pp.yaml
+  - --image=gcr.io/bestrealtimeprojects/sasuke:v4
   - --location=us-central1
   - --cluster=cluster-1
