@@ -12,4 +12,4 @@ steps:
   - --filename=pod.yaml
   - --image=gcr.io/bestrealtimeprojects/sasuke:v1
   - --location=us-central1
-  - --cluster=itachi-1
+  - --cluster=cluster1
