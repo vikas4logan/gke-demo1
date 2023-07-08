@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: sample-deployment
-          image: gcr.io/vyshnavi1-374012/firstimage:1
+          image: gcr.io/bestrealtimeprojects/sasuke:v1
           ports:
             - containerPort: 8080
               protocol: TCP

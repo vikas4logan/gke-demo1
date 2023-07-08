@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
     - name: sadara
-      image: gcr.io/gcpofflineproject/sasuke:v1
+      image: gcr.io/bestrealtimeprojects/sasuke:v1
