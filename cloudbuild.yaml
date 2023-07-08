@@ -9,7 +9,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=pod.yaml
+  - --filename=deployment.yaml
   - --image=gcr.io/bestrealtimeprojects/sasuke:v1
   - --location=us-central1
   - --cluster=cluster-1
