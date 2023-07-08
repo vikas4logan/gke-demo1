@@ -1,8 +1,1 @@
-apiVersion: v1
-kind: Pod
-metadata: 
-  name: boruto
-spec:
-  containers:
-    - name: sadara
-      image: gcr.io/bestrealtimeprojects/sasuke:v1
+

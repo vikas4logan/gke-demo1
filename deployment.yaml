@@ -1,26 +1,47 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: "apps/v1"
+kind: "Deployment"
 metadata:
-  name: mydeployment
+  name: "nginx-1"
+  namespace: "default"
   labels:
-    app: new1
+    app: "nginx-1"
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: new1
+      app: "nginx-1"
   template:
     metadata:
       labels:
-        app: new1
+        app: "nginx-1"
     spec:
       containers:
-        - name: sample-deployment
-          image: gcr.io/bestrealtimeprojects/sasuke:v1
-          ports:
-            - containerPort: 8080
-              protocol: TCP
+      - name: "sasuke-sha256-1"
+        image: "gcr.io/bestrealtimeprojects/sasuke@sha256:d1b2ca515c4e3b8f1321ac969aea1d4a446acdd8c132faf2f9e1515d4e908671"
+---
+apiVersion: "autoscaling/v2"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "nginx-1-hpa-qeof"
+  namespace: "default"
+  labels:
+    app: "nginx-1"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "nginx-1"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      target:
+        type: "Utilization"
+        averageUtilization: 80
+
 ...
 
 ---
@@ -29,11 +50,11 @@ kind: Service
 metadata:
   name: service-for-deployment
   labels:
-    app: new1
+    app: "nginx-1"
 spec:
   type: LoadBalancer
   selector:
-    app: new1
+    app: "nginx-1"
   ports:
     - port: 8050
       targetPort: 8080
